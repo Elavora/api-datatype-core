@@ -1,47 +1,39 @@
 # Guia de uso
 
-Base para DataTypes Elavora API.
+`AbstractDataType` concentra a criacao validada de objetos de valor imutaveis.
 
-## Instalacao
-
-```bash
-composer require elavora/api-datatype-core
-```
-
-## Quando usar
-
-- Validar e normalizar valores antes de chegar na regra de negocio.
-- Evitar passar strings soltas entre services, DTOs e persistencia.
-- Reutilizar a mesma validacao em controllers, comandos e testes.
-
-## Exemplo rapido
+## Criando um DataType
 
 ```php
 use Elavora\Api\DataTypes\AbstractDataType;
 
-$valor = new AbstractDataType('exemplo');
-$normalizado = $valor->value();
+final readonly class Codigo extends AbstractDataType
+{
+    public static function isValid(mixed $value): bool
+    {
+        return is_string($value) && trim($value) !== '';
+    }
+
+    protected static function normalize(mixed $value): string
+    {
+        return trim((string) $value);
+    }
+}
+
+$codigo = Codigo::from(' ABC ');
+
+echo $codigo->value(); // ABC
 ```
 
-## Principais pontos de entrada
+O construtor e protegido. Use sempre `from()`, que executa `isValid()` e `normalize()` antes de criar a instancia.
 
-- `Elavora\Api\DataTypes\AbstractDataType`
+O valor normalizado deve ser `string`, `int`, `bool`, `float` ou `null`. Outros tipos geram `UnexpectedValueException`.
 
-## Dependencias de runtime
+## Validacao do pacote
 
-- `elavora/api-framework` `^0.3.1`
-
-## Validacao no projeto consumidor
-
-Depois de instalar o pacote, rode os testes da aplicacao consumidora. Para uma verificacao isolada do pacote, use container:
+Execute os comandos a partir da raiz do clone:
 
 ```bash
-docker run --rm -v "${PWD}:/workspace" -w "/workspace/api-datatype-core" composer:2 composer validate --strict --no-check-publish
-docker run --rm -v "${PWD}:/workspace" -w "/workspace/api-datatype-core" composer:2 sh -lc "find . \\( -path ./.git -o -path ./vendor \\) -prune -o -name '*.php' -print0 | xargs -0 -r -n1 php -l"
+docker run --rm -v "${PWD}:/workspace" -w /workspace composer:2 composer update --no-interaction --no-progress --prefer-dist
+docker run --rm -v "${PWD}:/workspace" -w /workspace composer:2 composer check
 ```
-
-## Observacoes
-
-- Mantenha regras de produto fora deste pacote.
-- Prefira configurar extensoes no bootstrap da aplicacao.
-- Instale apenas os modulos que a aplicacao realmente usa.
