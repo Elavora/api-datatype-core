@@ -8,10 +8,11 @@ use Elavora\Api\Framework\Contracts\DataType;
 use Elavora\Api\Framework\Contracts\Insertable;
 use Elavora\Api\Framework\Contracts\Responseable;
 use InvalidArgumentException;
+use UnexpectedValueException;
 
 abstract readonly class AbstractDataType implements DataType, Insertable, Responseable
 {
-    final protected function __construct(protected mixed $value)
+    final protected function __construct(protected string|int|bool|float|null $value)
     {
     }
 
@@ -24,7 +25,22 @@ abstract readonly class AbstractDataType implements DataType, Insertable, Respon
             throw new InvalidArgumentException(sprintf('Valor invalido para %s.', static::class));
         }
 
-        return new static(static::normalize($value));
+        $normalized = static::normalize($value);
+        if (
+            !is_string($normalized)
+            && !is_int($normalized)
+            && !is_bool($normalized)
+            && !is_float($normalized)
+            && $normalized !== null
+        ) {
+            throw new UnexpectedValueException(sprintf(
+                '%s normalizou o valor como %s; esperado tipo primitivo ou null.',
+                static::class,
+                get_debug_type($normalized)
+            ));
+        }
+
+        return new static($normalized);
     }
 
     /**
