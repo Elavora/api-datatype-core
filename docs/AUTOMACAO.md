@@ -419,7 +419,7 @@ depois de `:` e sem sequências `\uXXXX` (por exemplo, `">=8.3"`, e não `">=8.3
   "name": "elavora/<repo>",
   "require": {
     "php": ">=8.3",
-    "elavora/api-framework": "^1.0"
+    "elavora/api-framework": "^2.0"
   },
   "require-dev": {
     "elavora/code-standards": "^1.1",
@@ -447,7 +447,10 @@ depois de `:` e sem sequências `\uXXXX` (por exemplo, `">=8.3"`, e não `">=8.3
 O exemplo mostra só as chaves que esta adoção cria ou muda. As demais (`description`, `type`, `license`, as outras
 dependências de `require`, `autoload`, `extra.branch-alias`) continuam como estão, na ordem atual.
 
-- As restrições de `php` (`>=8.3`) e de `elavora/api-framework` (`^1.0`) **não mudam** neste PR. O suporte ao framework 2 é outro PR.
+- Este PR também é o upgrade para o framework 2: `elavora/api-framework` sobe de `^1.0` para `^2.0`. A restrição de
+  `php` continua `>=8.3`, que o framework 2 também exige. O `src/` não muda: os contratos `DataType`, `Insertable` e
+  `Responseable` do framework 2 são os mesmos que `AbstractDataType` já implementa. Em `extra.branch-alias`, `dev-main`
+  passa de `1.0-dev` para `2.0-dev`.
 - `elavora/code-standards` fica em `require-dev`, nunca em `require`. A restrição é `^1.` seguido do minor (1 ou
   maior) e, opcionalmente, do patch. O minor mínimo é 1 porque o subcomando `lint` só existe a partir da 1.1.0, e o CI
   roda com as dependências nas versões mínimas.
@@ -847,10 +850,11 @@ As regras completas estão no `Elavora/.github`: [versionamento](https://github.
   maior número existente. O workflow nunca apaga nem move tag.
 - Só o último PR de uma série de mudanças leva `release`.
 
-**Neste repositório:** as tags são legadas (`v0.1.0`, `v0.1.1`, `v0.2.0`, `v1.0.0-rc.1` e `v1.0.0`), e a maior
-estável é `v1.0.0`, que conta como `1.0.0`. O PR de adoção do pipeline leva só a label `refactor` (patch) e não leva
-`release`, então o merge gera `1.0.1-beta.1`. O `release.yml` novo roda no merge desse mesmo PR e é o único
-workflow que cria versão, então sai uma release só.
+**Neste repositório:** as tags são legadas (`v0.1.0`, `v0.1.1`, `v0.2.0`, `v1.0.0-rc.1` e `v1.0.0`), e a última
+é a `v1.0.0`, que conta como a estável `1.0.0`. Um único PR faz o upgrade para o `elavora/api-framework` `^2.0` e
+adota o pipeline. Ele é o último PR da série e leva as labels `upgrade` (major) e `release` (estável), então o merge
+gera a estável `2.0.0`. O `release.yml` novo roda no merge desse mesmo PR, e o `tag_on_merge.yml` antigo já não
+existe nele, então sai uma release só.
 
 O Packagist é avisado pelo `release.yml` a cada release, com o secret `PACKAGIST_WEBHOOK_URL`. O pacote só fica
 disponível na versão nova depois dessa notificação.

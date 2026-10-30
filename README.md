@@ -11,7 +11,10 @@ Base abstrata para criar DataTypes imutaveis com validacao, normalizacao e integ
 ## Requisitos
 
 - PHP 8.3 ou superior.
-- `elavora/api-framework` `^1.0`.
+- `elavora/api-framework` `^2.0`.
+
+Versão `2.0`: atualiza o pacote para o `elavora/api-framework` 2.0, que substitui o `^1.0`. A API de
+`AbstractDataType` não muda, e o código em `src/` continua o mesmo.
 - Demais requisitos declarados em [`composer.json`](composer.json).
 
 ## Instalacao
