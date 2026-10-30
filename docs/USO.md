@@ -29,11 +29,26 @@ O construtor e protegido. Use sempre `from()`, que executa `isValid()` e `normal
 
 O valor normalizado deve ser `string`, `int`, `bool`, `float` ou `null`. Outros tipos geram `UnexpectedValueException`.
 
-## Validacao do pacote
+## Validação local
 
-Execute os comandos a partir da raiz do clone:
+Como rodar os testes, o lint e o PHPStan, e como reproduzir o CI, está em
+[Desenvolvimento e testes](DESENVOLVIMENTO.md). As restrições do `composer.json` (`php` `>=8.3` e
+`elavora/api-framework` `^2.0`) e os scripts de qualidade estão em [Automação](AUTOMACAO.md#composerjson).
 
-```bash
-docker run --rm -v "${PWD}:/workspace" -w /workspace composer:2 composer update --no-interaction --no-progress --prefer-dist
-docker run --rm -v "${PWD}:/workspace" -w /workspace composer:2 composer check
+## Versão e compatibilidade
+
+A versão `2.0` exige PHP `>=8.3` e `elavora/api-framework` `^2.0`. Para atualizar a partir da `1.0.0`, troque a
+restrição do framework no `composer.json` do seu projeto:
+
+```json
+{
+  "require": {
+    "php": ">=8.3",
+    "elavora/api-framework": "^2.0",
+    "elavora/api-datatype-core": "^2.0"
+  }
+}
 ```
+
+A API de `AbstractDataType` não muda (`from()`, `isValid()`, `normalize()`, `value()`, `jsonSerialize()` e
+`__toString()`): só a dependência do framework sobe de major.
