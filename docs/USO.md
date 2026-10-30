@@ -29,11 +29,8 @@ O construtor e protegido. Use sempre `from()`, que executa `isValid()` e `normal
 
 O valor normalizado deve ser `string`, `int`, `bool`, `float` ou `null`. Outros tipos geram `UnexpectedValueException`.
 
-## Validacao do pacote
+## Validação local
 
-Execute os comandos a partir da raiz do clone:
-
-```bash
-docker run --rm -v "${PWD}:/workspace" -w /workspace composer:2 composer update --no-interaction --no-progress --prefer-dist
-docker run --rm -v "${PWD}:/workspace" -w /workspace composer:2 composer check
-```
+Como rodar os testes, o lint e o PHPStan, e como reproduzir o CI, está em
+[Desenvolvimento e testes](DESENVOLVIMENTO.md). As restrições do `composer.json` (`php` `>=8.3` e
+`elavora/api-framework` `^1.0`) e os scripts de qualidade estão em [Automação](AUTOMACAO.md#composerjson).
