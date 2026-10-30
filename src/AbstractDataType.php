@@ -12,9 +12,7 @@ use UnexpectedValueException;
 
 abstract readonly class AbstractDataType implements DataType, Insertable, Responseable
 {
-    final protected function __construct(protected string|int|bool|float|null $value)
-    {
-    }
+    final protected function __construct(protected string|int|bool|float|null $value) {}
 
     /**
      * Cria e valida uma instancia do DataType.
@@ -36,7 +34,7 @@ abstract readonly class AbstractDataType implements DataType, Insertable, Respon
             throw new UnexpectedValueException(sprintf(
                 '%s normalizou o valor como %s; esperado tipo primitivo ou null.',
                 static::class,
-                get_debug_type($normalized)
+                get_debug_type($normalized),
             ));
         }
 

@@ -14,7 +14,7 @@ final class NormalizedValueTest extends TestCase
 {
     #[DataProvider('primitiveValues')]
     public function testAcceptsPrimitiveNormalizedValues(
-        string|int|bool|float|null $normalized
+        string|int|bool|float|null $normalized,
     ): void {
         $value = PrimitiveNormalizedDataType::from($normalized);
 
@@ -37,7 +37,7 @@ final class NormalizedValueTest extends TestCase
     #[DataProvider('unsupportedValues')]
     public function testRejectsUnsupportedNormalizedValues(
         mixed $normalized,
-        string $expectedType
+        string $expectedType,
     ): void {
         try {
             UnsupportedNormalizedDataType::from($normalized);
