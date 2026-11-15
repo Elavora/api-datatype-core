@@ -41,7 +41,7 @@ final readonly class Codigo extends AbstractDataType
     }
 }
 
-$valor = Codigo::from(' ABC ');
+$valor = new Codigo(' ABC ');
 $normalizado = $valor->value();
 ```
 

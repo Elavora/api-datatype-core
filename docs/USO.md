@@ -20,12 +20,14 @@ final readonly class Codigo extends AbstractDataType
     }
 }
 
-$codigo = Codigo::from(' ABC ');
+$codigo = new Codigo(' ABC ');
 
 echo $codigo->value(); // ABC
 ```
 
-O construtor e protegido. Use sempre `from()`, que executa `isValid()` e `normalize()` antes de criar a instancia.
+O construtor e publico e final: ele mesmo executa `isValid()` e `normalize()` antes de guardar o valor. Nao ha
+`from()` separado — e so uma forma de criar a instancia, `new Codigo(...)`. O `final` impede uma subclasse
+de redeclarar o construtor pra pular essa validacao.
 
 O valor normalizado deve ser `string`, `int`, `bool`, `float` ou `null`. Outros tipos geram `UnexpectedValueException`.
 
