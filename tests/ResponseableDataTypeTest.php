@@ -12,7 +12,7 @@ final class ResponseableDataTypeTest extends TestCase
 {
     public function testAbstractDataTypeCanBeReturnedAsResponseable(): void
     {
-        self::assertInstanceOf(Responseable::class, ResponseableTestDataType::from(' ok '));
+        self::assertInstanceOf(Responseable::class, new ResponseableTestDataType(' ok '));
     }
 }
 

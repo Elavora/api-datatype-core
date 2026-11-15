@@ -11,10 +11,10 @@ Base abstrata para criar DataTypes imutaveis com validacao, normalizacao e integ
 ## Requisitos
 
 - PHP 8.3 ou superior.
-- `elavora/api-framework` `^2.0`.
+- `elavora/api-framework` `^3.0`.
 
-Versão `2.0`: atualiza o pacote para o `elavora/api-framework` 2.0, que substitui o `^1.0`. A API de
-`AbstractDataType` não muda, e o código em `src/` continua o mesmo.
+Versão `3.0`: o construtor de `AbstractDataType` passa a validar direto (`new Tipo($valor)`), sem o `from()`
+separado, acompanhando a mesma mudança no contrato `DataType` do `elavora/api-framework` 3.0.
 - Demais requisitos declarados em [`composer.json`](composer.json).
 
 ## Instalacao
@@ -41,7 +41,7 @@ final readonly class Codigo extends AbstractDataType
     }
 }
 
-$valor = Codigo::from(' ABC ');
+$valor = new Codigo(' ABC ');
 $normalizado = $valor->value();
 ```
 

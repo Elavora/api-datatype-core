@@ -16,7 +16,7 @@ final class NormalizedValueTest extends TestCase
     public function testAcceptsPrimitiveNormalizedValues(
         string|int|bool|float|null $normalized,
     ): void {
-        $value = PrimitiveNormalizedDataType::from($normalized);
+        $value = new PrimitiveNormalizedDataType($normalized);
 
         self::assertSame($normalized, $value->value());
         self::assertSame($normalized, $value->jsonSerialize());
@@ -40,7 +40,7 @@ final class NormalizedValueTest extends TestCase
         string $expectedType,
     ): void {
         try {
-            UnsupportedNormalizedDataType::from($normalized);
+            new UnsupportedNormalizedDataType($normalized);
             self::fail('Era esperada uma UnexpectedValueException.');
         } catch (UnexpectedValueException $exception) {
             self::assertStringContainsString(UnsupportedNormalizedDataType::class, $exception->getMessage());
@@ -62,7 +62,7 @@ final class NormalizedValueTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        RejectedDataType::from('invalid');
+        new RejectedDataType('invalid');
     }
 }
 

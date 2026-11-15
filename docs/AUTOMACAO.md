@@ -419,7 +419,7 @@ depois de `:` e sem sequências `\uXXXX` (por exemplo, `">=8.3"`, e não `">=8.3
   "name": "elavora/<repo>",
   "require": {
     "php": ">=8.3",
-    "elavora/api-framework": "^2.0"
+    "elavora/api-framework": "^3.0"
   },
   "require-dev": {
     "elavora/code-standards": "^1.1",
@@ -447,10 +447,10 @@ depois de `:` e sem sequências `\uXXXX` (por exemplo, `">=8.3"`, e não `">=8.3
 O exemplo mostra só as chaves que esta adoção cria ou muda. As demais (`description`, `type`, `license`, as outras
 dependências de `require`, `autoload`, `extra.branch-alias`) continuam como estão, na ordem atual.
 
-- Este PR também é o upgrade para o framework 2: `elavora/api-framework` sobe de `^1.0` para `^2.0`. A restrição de
-  `php` continua `>=8.3`, que o framework 2 também exige. O `src/` não muda: os contratos `DataType`, `Insertable` e
-  `Responseable` do framework 2 são os mesmos que `AbstractDataType` já implementa. Em `extra.branch-alias`, `dev-main`
-  passa de `1.0-dev` para `2.0-dev`.
+- Este PR também é o upgrade para o framework 3: `elavora/api-framework` sobe de `^2.0` para `^3.0`. A restrição de
+  `php` continua `>=8.3`, que o framework 3 também exige. O `src/` não muda: os contratos `DataType`, `Insertable` e
+  `Responseable` do framework 3 são os mesmos que `AbstractDataType` já implementa. Em `extra.branch-alias`, `dev-main`
+  passa de `2.0-dev` para `3.0-dev`.
 - `elavora/code-standards` fica em `require-dev`, nunca em `require`. A restrição é `^1.` seguido do minor (1 ou
   maior) e, opcionalmente, do patch. O minor mínimo é 1 porque o subcomando `lint` só existe a partir da 1.1.0, e o CI
   roda com as dependências nas versões mínimas.

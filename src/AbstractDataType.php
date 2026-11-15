@@ -12,12 +12,12 @@ use UnexpectedValueException;
 
 abstract readonly class AbstractDataType implements DataType, Insertable, Responseable
 {
-    final protected function __construct(protected string|int|bool|float|null $value) {}
+    protected string|int|bool|float|null $value;
 
     /**
-     * Cria e valida uma instancia do DataType.
+     * Cria e valida uma instancia do DataType a partir do valor bruto.
      */
-    public static function from(mixed $value): static
+    final public function __construct(mixed $value)
     {
         if (!static::isValid($value)) {
             throw new InvalidArgumentException(sprintf('Valor invalido para %s.', static::class));
@@ -38,7 +38,7 @@ abstract readonly class AbstractDataType implements DataType, Insertable, Respon
             ));
         }
 
-        return new static($normalized);
+        $this->value = $normalized;
     }
 
     /**

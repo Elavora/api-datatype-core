@@ -14,7 +14,7 @@ final class AbstractDataTypeTest extends TestCase
 {
     public function testCreatesValidDataType(): void
     {
-        $value = CoreTestDataType::from(' ok ');
+        $value = new CoreTestDataType(' ok ');
 
         self::assertInstanceOf(DataType::class, $value);
         self::assertInstanceOf(Insertable::class, $value);
@@ -27,7 +27,7 @@ final class AbstractDataTypeTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        CoreTestDataType::from('');
+        new CoreTestDataType('');
     }
 }
 
