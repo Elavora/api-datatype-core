@@ -34,8 +34,8 @@ O valor normalizado deve ser `string`, `int`, `bool`, `float` ou `null`. Outros 
 ## Validação local
 
 Como rodar os testes, o lint e o PHPStan, e como reproduzir o CI, está em
-[Desenvolvimento e testes](DESENVOLVIMENTO.md). As restrições do `composer.json` (`php` `>=8.3` e
-`elavora/api-framework` `^3.0`) e os scripts de qualidade estão em [Automação](AUTOMACAO.md#composerjson).
+[Desenvolvimento e testes](DESENVOLVIMENTO.md). As restrições do `composer.json` (`php` `>=8.4` e
+`elavora/api-framework` `^4.1`) e os scripts de qualidade estão em [Automação](AUTOMACAO.md#composerjson).
 
 ## Versão e compatibilidade
 
@@ -45,8 +45,8 @@ restrição do framework no `composer.json` do seu projeto:
 ```json
 {
   "require": {
-    "php": ">=8.3",
-    "elavora/api-framework": "^3.0",
+    "php": ">=8.4",
+    "elavora/api-framework": "^4.1",
     "elavora/api-datatype-core": "^3.0"
   }
 }
