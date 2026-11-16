@@ -10,8 +10,8 @@ Base abstrata para criar DataTypes imutaveis com validacao, normalizacao e integ
 
 ## Requisitos
 
-- PHP 8.3 ou superior.
-- `elavora/api-framework` `^3.0`.
+- PHP 8.4 ou superior.
+- `elavora/api-framework` `^4.1`.
 
 Versão `3.0`: o construtor de `AbstractDataType` passa a validar direto (`new Tipo($valor)`), sem o `from()`
 separado, acompanhando a mesma mudança no contrato `DataType` do `elavora/api-framework` 3.0.
@@ -49,11 +49,11 @@ $normalizado = $valor->value();
 
 ## Desenvolvimento e testes
 
-Você só precisa de Docker. O ambiente é a imagem `ghcr.io/elavora/php-dev:8.3-latest`: abra o repositório no VS Code
+Você só precisa de Docker. O ambiente é a imagem `ghcr.io/elavora/php-dev:8.4-latest`: abra o repositório no VS Code
 com **Dev Containers: Reopen in Container**, ou rode no PowerShell:
 
 ```powershell
-docker run --rm --mount "type=bind,source=$($PWD.Path),target=/workspace" -w /workspace ghcr.io/elavora/php-dev:8.3-latest sh -lc 'git config --global --add safe.directory /workspace && composer install --no-interaction --prefer-dist && composer check'
+docker run --rm --mount "type=bind,source=$($PWD.Path),target=/workspace" -w /workspace ghcr.io/elavora/php-dev:8.4-latest sh -lc 'git config --global --add safe.directory /workspace && composer install --no-interaction --prefer-dist && composer check'
 ```
 
 Scripts do Composer:
