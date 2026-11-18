@@ -45,7 +45,7 @@ $valor = new Codigo(' ABC ');
 $normalizado = $valor->value();
 ```
 
-`$normalizado` contem `ABC`. O resultado de `normalize()` deve ser `string`, `int`, `bool`, `float` ou `null`.
+`$normalizado` contem `ABC`. O resultado de `normalize()` deve ser `string|int|bool|float|null`.
 
 ## Desenvolvimento e testes
 

@@ -29,7 +29,7 @@ O construtor e publico e final: ele mesmo executa `isValid()` e `normalize()` an
 `from()` separado — e so uma forma de criar a instancia, `new Codigo(...)`. O `final` impede uma subclasse
 de redeclarar o construtor pra pular essa validacao.
 
-O valor normalizado deve ser `string`, `int`, `bool`, `float` ou `null`. Outros tipos geram `UnexpectedValueException`.
+O valor normalizado deve ser `string|int|bool|float|null`. Outros tipos geram `UnexpectedValueException`.
 
 ## Validação local
 
