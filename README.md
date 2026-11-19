@@ -11,7 +11,7 @@ Base abstrata para criar DataTypes imutaveis com validacao, normalizacao e integ
 ## Requisitos
 
 - PHP 8.4 ou superior.
-- `elavora/api-framework` `^4.1`.
+- `elavora/api-framework` `^4.1 || ^5.0 || ^6.0`.
 
 Versão `3.0`: o construtor de `AbstractDataType` passa a validar direto (`new Tipo($valor)`), sem o `from()`
 separado, acompanhando a mesma mudança no contrato `DataType` do `elavora/api-framework` 3.0.

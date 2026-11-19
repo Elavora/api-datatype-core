@@ -419,7 +419,7 @@ depois de `:` e sem sequências `\uXXXX` (por exemplo, `">=8.4"`, e não `">=8.4
   "name": "elavora/<repo>",
   "require": {
     "php": ">=8.4",
-    "elavora/api-framework": "^4.1"
+    "elavora/api-framework": "^4.1 || ^5.0 || ^6.0"
   },
   "require-dev": {
     "elavora/code-standards": "^1.1",
